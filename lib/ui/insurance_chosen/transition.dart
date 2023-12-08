@@ -1,5 +1,6 @@
 import 'package:eduguard/data/insurance_type.dart';
 import 'package:eduguard/ui/accueil.dart';
+import 'package:eduguard/ui/cursus/list/cursus_list.dart';
 import 'package:eduguard/ui/insurance_chosen/policyholder_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -110,113 +111,176 @@ class _TransitionState extends State<Transition> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(
-              width / 15,
-              width / 15,
-              width / 15,
-              0,
-            ),
-            child: Text(
-              "Une assurance pour vous-même ou pour une personne tierce ?",
-              style: GoogleFonts.raleway(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-                color: const Color(0xFF4169E1),
-              ),
-            ),
-          ),
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: width / 3,
-            child: ClipOval(
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: Image.asset(
-                  insurance.imagePath,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: width / 40,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                width: width / 40,
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PolicyHolderDetail(
-                          index: widget.index,
-                          isForCurrentUser: false,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            if (widget.index == 1)
+              Row(
+                children: [
+                  SizedBox(
+                    width: width / 20,
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(
+                        width / 15,
+                        width / 30,
+                        width / 15,
+                        width / 30,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color(0xFF4169E1),
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(30),
                         ),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFFFFFFF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                  ),
-                  child: Text(
-                    "Pour une autre personne",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.raleway(
-                      color: const Color(0xFF4169E1),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: width / 40,
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PolicyHolderDetail(
-                          index: widget.index,
-                          isForCurrentUser: true,
+                      child: Text(
+                        "Aucun cursus choisi ...",
+                        style: GoogleFonts.raleway(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: const Color(0xFF4169E1),
                         ),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
+                    ),
+                  ),
+                  SizedBox(
+                    width: width / 20,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CursusList(
+                            isForInsurance: true,
+                          ),
+                        ),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color(0xFF4169E1),
+                    ),
+                    child: Text(
+                      "Choisir",
+                      style: GoogleFonts.raleway(
+                        color: const Color(0xFFFFFFFF),
                       ),
                     ),
                   ),
-                  child: Text(
-                    "Moi-même",
-                    style: GoogleFonts.raleway(
-                      fontWeight: FontWeight.w500,
-                    ),
+                  SizedBox(
+                    width: width / 40,
+                  ),
+                ],
+              ),
+            Container(
+              padding: EdgeInsets.fromLTRB(
+                width / 15,
+                width / 15,
+                width / 15,
+                0,
+              ),
+              child: Text(
+                "Une assurance pour vous-même ou pour une personne tierce ?",
+                style: GoogleFonts.raleway(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                  color: const Color(0xFF4169E1),
+                ),
+              ),
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: width / 3,
+              child: ClipOval(
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Image.asset(
+                    insurance.imagePath,
                   ),
                 ),
               ),
-              SizedBox(
-                width: width / 40,
-              ),
-            ],
-          ),
-        ],
+            ),
+            SizedBox(
+              height: width / 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  width: width / 40,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PolicyHolderDetail(
+                            index: widget.index,
+                            isForCurrentUser: false,
+                          ),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFFFFFFF),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      "Pour une autre personne",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.raleway(
+                        color: const Color(0xFF4169E1),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: width / 40,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PolicyHolderDetail(
+                            index: widget.index,
+                            isForCurrentUser: true,
+                          ),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      "Moi-même",
+                      style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: width / 40,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -4,14 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CursusList extends StatefulWidget {
-  const CursusList({super.key});
+  const CursusList({
+    super.key,
+    this.isForInsurance,
+  });
+  final bool? isForInsurance;
 
   @override
   State<CursusList> createState() => _CursusListState();
 }
 
 class _CursusListState extends State<CursusList> {
-  List<String>? userCursus;
+  List<String>? userCursus = ["deeds"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +36,9 @@ class _CursusListState extends State<CursusList> {
             : ListView.builder(
                 itemCount: 4,
                 itemBuilder: (context, index) {
-                  return const CursusTile();
+                  return CursusTile(
+                    isForInsurance: widget.isForInsurance,
+                  );
                 },
               ),
       ),
