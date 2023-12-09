@@ -197,64 +197,64 @@ class _RegistrationState extends State<Registration> {
                     ),
                   ),
                   onPressed: () async {
-                    // final bool connect = await checkInternetConnectivity();
-                    // if (_formkey.currentState!.validate()) {
-                    //   _formkey.currentState!.save();
-                    //   setState(() {
-                    //     loading = true;
-                    //   });
-                    //   if (connect) {
-                    //     try {
-                    //       final String state = await authService.createUser(
-                    //         email: _mailController.text,
-                    //         name: _nameController.text,
-                    //         password: _passwordController.text,
-                    //         phone: _telController.text,
-                    //       );
+                    final bool connect = await checkInternetConnectivity();
+                    if (_formkey.currentState!.validate()) {
+                      _formkey.currentState!.save();
+                      setState(() {
+                        loading = true;
+                      });
+                      if (connect) {
+                        try {
+                          final String state = await authService.createUser(
+                            email: _mailController.text,
+                            name: _nameController.text,
+                            password: _passwordController.text,
+                            phone: _telController.text,
+                          );
 
-                    //       if (state.contains("Enregistre")) {
-                    //         // ignore: use_build_context_synchronously
-                    //         ScaffoldMessenger.of(context).showSnackBar(
-                    //           const SnackBar(
-                    //             backgroundColor: Color(0xFF146CC2),
-                    //             content: Text(
-                    //               "Inscription réussie",
-                    //               style: TextStyle(
-                    //                 fontFamily: 'Poppins',
-                    //                 fontWeight: FontWeight.w700,
-                    //                 fontSize: 12,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         );
-                    //         // ignore: use_build_context_synchronously
-                    //         Navigator.of(context).pushReplacement(
-                    //           MaterialPageRoute(
-                    //             builder: (context) => const Login(),
-                    //           ),
-                    //         );
-                    //       }
-                    //     } catch (error) {
-                    //       setState(() {
-                    //         loading = true;
-                    //       });
-                    //       // ignore: use_build_context_synchronously
-                    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //         content: Text(error.toString()),
-                    //       ));
-                    //     }
-                    //   } else {
-                    //     setState(() {
-                    //       loading = false;
-                    //     });
-                    //     // ignore: use_build_context_synchronously
-                    //     ScaffoldMessenger.of(context).showSnackBar(
-                    //       const SnackBar(
-                    //         content: Text("Internet non disponible"),
-                    //       ),
-                    //     );
-                    //   }
-                    // }
+                          if (state.contains("Enregistre")) {
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Color(0xFF146CC2),
+                                content: Text(
+                                  "Inscription réussie",
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            );
+                            // ignore: use_build_context_synchronously
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => const Login(),
+                              ),
+                            );
+                          }
+                        } catch (error) {
+                          setState(() {
+                            loading = true;
+                          });
+                          // ignore: use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(error.toString()),
+                          ));
+                        }
+                      } else {
+                        setState(() {
+                          loading = false;
+                        });
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Internet non disponible"),
+                          ),
+                        );
+                      }
+                    }
                   },
                   child: loading
                       ? const CircularProgressIndicator(

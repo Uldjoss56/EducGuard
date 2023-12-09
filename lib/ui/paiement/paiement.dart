@@ -1,5 +1,4 @@
 import 'package:eduguard/data/services/momo_service/momo_service.dart';
-import 'package:eduguard/ui/accueil.dart';
 import 'package:eduguard/ui/paiement/paiement_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,8 +16,6 @@ class _PaiementState extends State<Paiement> {
   final format = NumberFormat("#,###", "fr");
 
   final momoService = MomoService();
-
-  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -162,6 +159,7 @@ class _PaiementState extends State<Paiement> {
                               final response =
                                   await momoService.requestToPay(numero);
                               if (response == "Success") {
+                                // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
