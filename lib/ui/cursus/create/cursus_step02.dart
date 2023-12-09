@@ -1,14 +1,17 @@
+import 'package:eduguard/data/cursus.dart';
+import 'package:eduguard/providers/cursus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CursusStep02 extends StatefulWidget {
+class CursusStep02 extends ConsumerStatefulWidget {
   const CursusStep02({super.key});
 
   @override
-  State<CursusStep02> createState() => _CursusStep02State();
+  ConsumerState<CursusStep02> createState() => _CursusStep02State();
 }
 
-class _CursusStep02State extends State<CursusStep02> {
+class _CursusStep02State extends ConsumerState<CursusStep02> {
   final listoflevel = [
     "Licence",
     "Technicien",
@@ -290,6 +293,12 @@ class _CursusStep02State extends State<CursusStep02> {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
+                final cursus = Cursus(
+                  title: 'Cursus 1',
+                  description: 'Internet et Telecom',
+                );
+                final cursusNotifier = ref.read(cursusProvider.notifier);
+                cursusNotifier.updateCursus(cursus);
                 Navigator.pop(context);
                 Navigator.pop(context);
                 /*Navigator.pushReplacement(

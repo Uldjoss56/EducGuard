@@ -1,9 +1,11 @@
+import 'package:eduguard/providers/cursus.dart';
 import 'package:eduguard/ui/cursus/create/cursus_step01.dart';
 import 'package:eduguard/ui/cursus/list/widget/cursus_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CursusList extends StatefulWidget {
+class CursusList extends ConsumerStatefulWidget {
   const CursusList({
     super.key,
     this.isForInsurance,
@@ -11,20 +13,21 @@ class CursusList extends StatefulWidget {
   final bool? isForInsurance;
 
   @override
-  State<CursusList> createState() => _CursusListState();
+  ConsumerState<CursusList> createState() => _CursusListState();
 }
 
-class _CursusListState extends State<CursusList> {
+class _CursusListState extends ConsumerState<CursusList> {
   List<String>? userCursus = ["deeds"];
   @override
   Widget build(BuildContext context) {
+    final cursus = ref.watch(cursusProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cursus"),
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
-        child: userCursus == null || userCursus == []
+        child: cursus!.title == ""
             ? Center(
                 child: Text(
                   "Vide..",
@@ -34,10 +37,11 @@ class _CursusListState extends State<CursusList> {
                 ),
               )
             : ListView.builder(
-                itemCount: 4,
+                itemCount: 1,
                 itemBuilder: (context, index) {
                   return CursusTile(
                     isForInsurance: widget.isForInsurance,
+                    cursus: cursus,
                   );
                 },
               ),

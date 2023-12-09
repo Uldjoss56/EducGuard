@@ -1,11 +1,13 @@
 import 'package:eduguard/data/insurance_type.dart';
+import 'package:eduguard/providers/cursus.dart';
 import 'package:eduguard/ui/accueil.dart';
 import 'package:eduguard/ui/cursus/list/cursus_list.dart';
 import 'package:eduguard/ui/insurance_chosen/policyholder_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Transition extends StatefulWidget {
+class Transition extends ConsumerStatefulWidget {
   const Transition({
     super.key,
     required this.index,
@@ -14,10 +16,10 @@ class Transition extends StatefulWidget {
   final int index;
 
   @override
-  State<Transition> createState() => _TransitionState();
+  ConsumerState<Transition> createState() => _TransitionState();
 }
 
-class _TransitionState extends State<Transition> {
+class _TransitionState extends ConsumerState<Transition> {
   final List<InsuranceType> _listInsurances = [
     InsuranceType(
       title: "Assurance santé",
@@ -51,6 +53,7 @@ class _TransitionState extends State<Transition> {
 
   @override
   Widget build(BuildContext context) {
+    final cursus = ref.watch(cursusProvider);
     final width = MediaQuery.of(context).size.width;
     final insurance = _listInsurances[widget.index];
     return Scaffold(
@@ -137,7 +140,9 @@ class _TransitionState extends State<Transition> {
                         ),
                       ),
                       child: Text(
-                        "Aucun cursus choisi ...",
+                        cursus!.title!.isEmpty
+                            ? "Aucun cursus choisi ..."
+                            : cursus.title!,
                         style: GoogleFonts.raleway(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,

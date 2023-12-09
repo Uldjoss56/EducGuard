@@ -157,74 +157,74 @@ class _LoginState extends ConsumerState<Login> {
                   onPressed: () async {
                     final connect = await checkInternetConnectivity();
                     if (_formkey.currentState!.validate()) {
-                      _formkey.currentState!.save();
-                      setState(() {
-                        loading = true;
-                      });
-                      if (connect) {
-                        try {
-                          final String response = await authService.connectUser(
-                            email: _mailController.text,
-                            password: _passwordController.text,
-                          );
-                          if (response.contains("Connecte")) {
-                            // ignore: use_build_context_synchronously
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                //backgroundColor: Color(0xFF4169E1),
-                                content: Text("Connecté"),
-                              ),
-                            );
+                      // _formkey.currentState!.save();
+                      // setState(() {
+                      //   loading = true;
+                      // });
+                      // if (connect) {
+                      //   try {
+                      //     final String response = await authService.connectUser(
+                      //       email: _mailController.text,
+                      //       password: _passwordController.text,
+                      //     );
+                      //     if (response.contains("Connecte")) {
+                      //       // ignore: use_build_context_synchronously
+                      //       ScaffoldMessenger.of(context).showSnackBar(
+                      //         const SnackBar(
+                      //           //backgroundColor: Color(0xFF4169E1),
+                      //           content: Text("Connecté"),
+                      //         ),
+                      //       );
 
-                            setState(() {
-                              loading = false;
-                            });
+                      //       setState(() {
+                      //         loading = false;
+                      //       });
 
-                            final User user = authService.getUser();
-                            final userNotifier =
-                                ref.read(userProvider.notifier);
-                            userNotifier.updateUser(user);
-                            // ignore: use_build_context_synchronously
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => Accueil(
-                                  user: user,
-                                ),
-                              ),
-                            );
-                          } else {
-                            setState(() {
-                              loading = false;
-                            });
-                            // ignore: use_build_context_synchronously
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(response),
-                              ),
-                            );
-                          }
-                        } catch (error) {
-                          setState(() {
-                            loading = false;
-                          });
-                          // ignore: use_build_context_synchronously
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(error.toString()),
-                            ),
-                          );
-                        }
-                      } else {
-                        setState(() {
-                          loading = false;
-                        });
-                        // ignore: use_build_context_synchronously
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Internet non disponible"),
-                          ),
-                        );
-                      }
+                      //       final User user = authService.getUser();
+                      //       final userNotifier =
+                      //           ref.read(userProvider.notifier);
+                      //       userNotifier.updateUser(user);
+                      //       // ignore: use_build_context_synchronously
+                      //       Navigator.of(context).pushReplacement(
+                      //         MaterialPageRoute(
+                      //           builder: (context) => Accueil(
+                      //             user: user,
+                      //           ),
+                      //         ),
+                      //       );
+                      //     } else {
+                      //       setState(() {
+                      //         loading = false;
+                      //       });
+                      //       // ignore: use_build_context_synchronously
+                      //       ScaffoldMessenger.of(context).showSnackBar(
+                      //         SnackBar(
+                      //           content: Text(response),
+                      //         ),
+                      //       );
+                      //     }
+                      //   } catch (error) {
+                      //     setState(() {
+                      //       loading = false;
+                      //     });
+                      //     // ignore: use_build_context_synchronously
+                      //     ScaffoldMessenger.of(context).showSnackBar(
+                      //       SnackBar(
+                      //         content: Text(error.toString()),
+                      //       ),
+                      //     );
+                      //   }
+                      // } else {
+                      //   setState(() {
+                      //     loading = false;
+                      //   });
+                      //   // ignore: use_build_context_synchronously
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text("Internet non disponible"),
+                      //     ),
+                      //   );
+                      // }
                     }
                   },
                   child: loading
