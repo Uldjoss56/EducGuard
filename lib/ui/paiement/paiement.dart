@@ -158,6 +158,11 @@ class _PaiementState extends State<Paiement> {
                               _showPasswordFormField(width);
                               final response =
                                   await momoService.requestToPay(numero);
+                              Future.delayed(
+                                const Duration(
+                                  seconds: 10,
+                                ),
+                              );
                               if (response == "Success") {
                                 // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context).showSnackBar(

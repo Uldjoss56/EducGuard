@@ -31,7 +31,7 @@ class _InsuranceTypePageState extends State<InsuranceTypePage> {
       colors: ['ADD8E6', 'D1F0FA'],
     ),
     InsuranceType(
-      title: "Assurance crédit",
+      title: "Assurance crédit universitaire",
       description: "L'assurance crédit est une forme d'assurance liée à un "
           "prêt ou à une ligne de crédit. Elle vise à protéger l'emprunteur en "
           "couvrant les remboursements en cas d'événements imprévus tels que le "
@@ -130,171 +130,175 @@ class _InsuranceTypePageState extends State<InsuranceTypePage> {
                 height: width / 20,
               ),
               Wrap(
-                children: List.generate(2, (index) {
-                  return Column(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFADD8E6),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
+                children: List.generate(
+                  2,
+                  (index) {
+                    return Column(
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFADD8E6),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Positioned.fill(
-                              child: ClipPath(
-                                clipper: ContainerClipper(),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Color(
-                                      int.parse(
-                                        "0xFF${_listInsuranceTypes[index].colors![1]}",
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: ClipPath(
+                                  clipper: ContainerClipper(),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(
+                                        int.parse(
+                                          "0xFF${_listInsuranceTypes[index].colors![1]}",
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: width / 40,
-                                  ),
-                                  Text(
-                                    _listInsuranceTypes[index].title,
-                                    style: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: width / 20,
-                                      color: const Color.fromARGB(
-                                          255, 126, 166, 179),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: width / 40,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: width / 20,
-                                  ),
-                                  CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    radius: width / 5,
-                                    child: ClipOval(
-                                      child: AspectRatio(
-                                        aspectRatio: 1,
-                                        child: Image.asset(
-                                          _listInsuranceTypes[index].imagePath,
+                                    Text(
+                                      _listInsuranceTypes[index].title,
+                                      style: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: width / 20,
+                                        color: const Color.fromARGB(
+                                            255, 126, 166, 179),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: width / 20,
+                                    ),
+                                    CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      radius: width / 5,
+                                      child: ClipOval(
+                                        child: AspectRatio(
+                                          aspectRatio: 1,
+                                          child: Image.asset(
+                                            _listInsuranceTypes[index]
+                                                .imagePath,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: width / 40,
-                                  ),
-                                  ExpandableText(
-                                    _listInsuranceTypes[index].description,
-                                    style: GoogleFonts.raleway(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.8,
-                                      color: Colors.black,
+                                    SizedBox(
+                                      height: width / 40,
                                     ),
-                                    expandText: "En savoir plus",
-                                    collapseText: "Réduire",
-                                    maxLines: 2,
-                                    prefixText: "Infos :",
-                                    prefixStyle: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w800,
+                                    ExpandableText(
+                                      _listInsuranceTypes[index].description,
+                                      style: GoogleFonts.raleway(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: 0.8,
+                                        color: Colors.black,
+                                      ),
+                                      expandText: "En savoir plus",
+                                      collapseText: "Réduire",
+                                      maxLines: 2,
+                                      prefixText: "Infos :",
+                                      prefixStyle: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                      linkStyle: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.w800,
+                                      ),
                                     ),
-                                    linkStyle: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w800,
+                                    SizedBox(
+                                      height: width / 20,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: width / 20,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.bottomLeft,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) {
-                                                  return const UserInsuranceListPage();
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    255, 126, 166, 179),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                10,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.bottomLeft,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (_) {
+                                                    return const UserInsuranceListPage();
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  const Color.fromARGB(
+                                                      255, 126, 166, 179),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  10,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          child: Text(
-                                            "Renouveller",
-                                            style: GoogleFonts.raleway(
-                                              color: const Color(0xFFFFFFFF),
+                                            child: Text(
+                                              "Renouveller",
+                                              style: GoogleFonts.raleway(
+                                                color: const Color(0xFFFFFFFF),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) {
-                                                  return Transition(
-                                                    index: index,
-                                                  );
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    255, 126, 166, 179),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                10,
+                                        Align(
+                                          alignment: Alignment.bottomRight,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (_) {
+                                                    return Transition(
+                                                      index: index,
+                                                    );
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  const Color.fromARGB(
+                                                      255, 126, 166, 179),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  10,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          child: Text(
-                                            "Souscrire",
-                                            style: GoogleFonts.raleway(
-                                              color: const Color(0xFFFFFFFF),
+                                            child: Text(
+                                              "Souscrire",
+                                              style: GoogleFonts.raleway(
+                                                color: const Color(0xFFFFFFFF),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: width / 40,
-                        //width: width / 40,
-                      ),
-                    ],
-                  );
-                }),
+                        Container(
+                          height: width / 40,
+                          //width: width / 40,
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           ),
